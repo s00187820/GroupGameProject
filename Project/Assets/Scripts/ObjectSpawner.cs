@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject[] spawnGoals;
-    public float xRange = 1.0f;
-    public float yRange = 1.0f;
-    public float minimumSpawnTime = 1.0f;
-    public float maximumSpawnTime = 10.0f;
-    
+    public GameObject[] spawnObject;
+    public float XRange = 1.0f;
+    public float YRange = 1.0f;
+    public float minSpawnTime = 1.0f;
+    public float maxSpawnTime = 10.0f;
+
     void Start()
     {
-        Invoke("SpawnGoal", Random.Range(minimumSpawnTime, maximumSpawnTime));
-
+        Invoke("SpawnGoal", Random.Range(minSpawnTime, maxSpawnTime));
     }
 
-    void SpawnGoals()
+    void SpawnGoal()
     {
-        float xOffset = Random.Range(-xRange, xRange);
-        float yOffset = Random.Range(-yRange, yRange);
-        int spawnGoalsIndex = Random.Range(0, spawnGoals.Length);
-        Instantiate(spawnGoals[spawnGoalsIndex],transform.position + new Vector3(xOffset,yOffset,0.0f), spawnGoals[spawnGoalsIndex].transform.rotation);
-        Invoke("SpawnGoal", Random.Range(minimumSpawnTime, maximumSpawnTime));
+        float OffsetX = Random.Range(-XRange, XRange);
+        float OffsetY = Random.Range(-YRange, YRange);
+        int spawnObjectIndex = Random.Range(0, spawnObject.Length);
+        Instantiate(spawnObject[spawnObjectIndex], transform.position
+            + new Vector3(OffsetX, OffsetY, 0.0f), 
+            spawnObject[spawnObjectIndex].transform.rotation);
+        Invoke("SpawnGoal", Random.Range(minSpawnTime, maxSpawnTime));
+
     }
+    
     
 }
